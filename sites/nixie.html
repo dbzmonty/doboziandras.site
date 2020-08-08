@@ -11,13 +11,13 @@
             integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
         <!-- Custom CSS -->
-        <link rel="stylesheet" type="text/css" href="css/custom.css">
+        <link rel="stylesheet" type="text/css" href="../css/custom.css">
     </head>
     <body>
         <!--Start Navigation-->
-        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <nav id="header" class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="#">Andras Dobozi</a>
+                <a class="navbar-brand" href="../index.html">Andras Dobozi</a>
 
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                     data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
@@ -28,16 +28,16 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Home</a>
+                            <a class="nav-link" href="../index.html">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="sites/portfolio.html">Portfolio</a>
+                            <a class="nav-link" href="portfolio.html">Portfolio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="sites/cv.html">CV</a>
+                            <a class="nav-link" href="cv.html">CV</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="sites/contact.html">Contact</a>
+                            <a class="nav-link" href="contact.html">Contact</a>
                         </li>
                     </ul>
                 </div>
@@ -46,18 +46,36 @@
         <!--End Navigation-->
 
         <!--Start Content-->
+        <br>
         <div class="container">
-            <div class="jumbotron">
-                <h1 class="display-5">Welcome visitor!</h1>
-                <p class="lead">This is my developer site which contains my recent projects. I’m very interested in coding and electronics, so I love to combine these two. You’ll see mostly Arduino or ESP based projects, but I’ll post my Java and C# projects, too. Every post is connected to my github page, so you can get source codes and stuff as well.</p>
-                <p class="lead">Have fun! 🙂</p>
-                <hr class="my-4">
-            </div>
+            <h1 class="display-5">Nixie clock</h1>
+
+            <p class="lead">Once, when I was looking for something on the attic, I have found lots of nixie-tubes. After that I started to thinking about that what could I do with these. Soon, I figured out that I need just a 12V -> 150V high voltage power supply and a 74141PC driver IC which is a binary to decimal converter. After these stuffs arrived from ebay, I started to assemble a test PCB.</p>
+            
+            <img id="nixie_1" src="../img/thumb_nixie_1_600px.jpg" alt="Clock" class="rounded portfolio-img">            
+            
+            <p class="lead">Since it works well, I started to develop the main PCB and the full code for an Atmel ATMega328P microcontroller (which is also used by Arduinos).</p>            
+            
+            <img id="nixie_2" src="../img/thumb_nixie_2_600px.jpg" alt="Under Construction" class="rounded portfolio-img">
+            
+            <p class="lead">To show the current and precise time, I am using a DS1307 RTC (real time clock) module. It is configured and actualized on PC at the first time, and a 3V Li-Ion battery keeps the clock ticking when the module is powered off.</p>
+            
+            <img id="nixie_3" src="../img/thumb_nixie_3_600px.jpg" alt="Early Experimentation" class="rounded portfolio-img">
+            
+            <p class="lead"><a href="https://github.com/dbzmonty/Nixie_Clock" target="_blank">Github Link</a></p>
+            <br>
         </div>
+
+        <div id="myModal" class="modal">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="modal-img">
+            <div id="caption"></div>
+        </div>
+
         <!--End Content-->
         
         <!--Start Footer-->
-        <footer class="py-3 bg-dark fixed-bottom">
+        <footer id="footer" class="py-3 bg-dark">
             <div class="container">
                 <p class="m-0 text-center text-white">Copyright &copy; Andras Dobozi 2020</p>
             </div>
@@ -74,5 +92,6 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
             integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
             crossorigin="anonymous"></script>
+        <script src="../script/modalImage.js"></script>
     </body>
 </html>
