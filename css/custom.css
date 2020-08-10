@@ -12,15 +12,16 @@ body {
     margin-right: auto;
     margin-top: 20px;
     margin-bottom: 20px;
-    cursor: pointer;
+    
     width: 100%;
     height: auto;
     max-width: 600px;
 }
 
-#nixie_1:hover {opacity: 0.7;}
-#nixie_2:hover {opacity: 0.7;}
-#nixie_3:hover {opacity: 0.7;}
+.portfolio-img-pointer:hover {
+    cursor: pointer;    
+    opacity: 0.7;
+}
 
 .modal {
     display: none;
@@ -96,4 +97,12 @@ body {
     .modal-content {
       width: 100%;
     }
+}
+
+.code {
+    background-color: darkslategrey;
+    color: white;;
+    padding: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 30px;
 }

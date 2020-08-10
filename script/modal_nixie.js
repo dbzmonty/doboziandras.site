@@ -15,6 +15,15 @@ span.onclick = function() {
     document.getElementById("footer").style.display="block";
 }
 
+document.onkeydown = function(evt) {
+    evt = evt || window.event;
+    if (evt.keyCode == 27) {
+        modal.style.display = "none";
+        document.getElementById("header").style.display="block";
+        document.getElementById("footer").style.display="block";
+    }
+};
+
 img1.onclick = function() {
     modal.style.display = "block";
     modalImg.src = "../img/full_nixie_1.jpg";
@@ -38,4 +47,3 @@ img3.onclick = function() {
     document.getElementById("header").style.display="none";
     document.getElementById("footer").style.display="none";
 }
-

@@ -48,19 +48,19 @@
         <!--Start Content-->
         <br>
         <div class="container">
-            <h1 class="display-5">Nixie clock</h1>
+            <h1 class="display-4">Nixie clock</h1>
 
             <p class="lead">Once, when I was looking for something on the attic, I have found lots of nixie-tubes. After that I started to thinking about that what could I do with these. Soon, I figured out that I need just a 12V -> 150V high voltage power supply and a 74141PC driver IC which is a binary to decimal converter. After these stuffs arrived from ebay, I started to assemble a test PCB.</p>
             
-            <img id="nixie_1" src="../img/thumb_nixie_1_600px.jpg" alt="Clock" class="rounded portfolio-img">            
+            <img id="nixie_1" src="../img/thumb_nixie_1_600px.jpg" alt="Clock" class="rounded portfolio-img portfolio-img-pointer">            
             
             <p class="lead">Since it works well, I started to develop the main PCB and the full code for an Atmel ATMega328P microcontroller (which is also used by Arduinos).</p>            
             
-            <img id="nixie_2" src="../img/thumb_nixie_2_600px.jpg" alt="Under Construction" class="rounded portfolio-img">
+            <img id="nixie_2" src="../img/thumb_nixie_2_600px.jpg" alt="Under Construction" class="rounded portfolio-img portfolio-img-pointer">
             
             <p class="lead">To show the current and precise time, I am using a DS1307 RTC (real time clock) module. It is configured and actualized on PC at the first time, and a 3V Li-Ion battery keeps the clock ticking when the module is powered off.</p>
             
-            <img id="nixie_3" src="../img/thumb_nixie_3_600px.jpg" alt="Early Experimentation" class="rounded portfolio-img">
+            <img id="nixie_3" src="../img/thumb_nixie_3_600px.jpg" alt="Early Experimentation" class="rounded portfolio-img portfolio-img-pointer">
             
             <p class="lead"><a href="https://github.com/dbzmonty/Nixie_Clock" target="_blank">Github Link</a></p>
             <br>
@@ -71,7 +71,6 @@
             <img class="modal-content" id="modal-img">
             <div id="caption"></div>
         </div>
-
         <!--End Content-->
         
         <!--Start Footer-->
@@ -92,6 +91,6 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
             integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
             crossorigin="anonymous"></script>
-        <script src="../script/modalImage.js"></script>
+        <script src="../script/modal_nixie.js"></script>
     </body>
 </html>

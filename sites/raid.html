@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Andras Dobozi's website</title>
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+            integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="../css/custom.css">
+    </head>
+    <body>
+        <!--Start Navigation-->
+        <nav id="header" class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="../index.html">Andras Dobozi</a>
+
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                    data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="portfolio.html">Portfolio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="cv.html">CV</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!--End Navigation-->
+
+        <!--Start Content-->
+        <br>
+        <div class="container">
+            <h1 class="display-4">RAID configuration tutorial on Ubuntu Linux</h1>
+            <br>
+            <h4>In this article, I am going to show you how to configure a RAID 1 array on Ubuntu Linux.</h4>
+            <p class="lead">I am using 2 pieces of 80GB hard drives, with a slightly different capacities. First of all let’s switch to superuser to prevent lots of sudos and list the devices and partitions.</p>
+            <p class="code">sudo su <br> lsblk</p>
+            <img id="raid_1" src="../img/full_raid_1.png" alt="" class="rounded portfolio-img portfolio-img-pointer">
+            <p class="lead">We are going to use sdb and sdc. Let’s make sure that disks don’t have any partitions, if there is one at least (sdb1) delete it with fdisk using ‘d’ command:</p>
+            <p class="code">fdisk /dev/sdb</p>
+            <p class="lead">Install mdadm:</p>
+            <p class="code">apt install mdadm</p>
+            <p class="lead">Create the RAID 1 array with sdb and sdc:</p>
+            <p class="code">mdadm –create –verbose /dev/md0 –level=1 –raid-devices=2 /dev/sdb /dev/sdc</p>
+            <img id="raid_2" src="../img/full_raid_2.png" alt="" class="rounded portfolio-img portfolio-img-pointer">
+            <p class="lead">The array is created and syncing is started, check the syncing state:</p>
+            <p class="code">cat /proc/mdstat</p>
+            <img id="raid_3" src="../img/full_raid_3.png" alt="" class="rounded portfolio-img portfolio-img-pointer">
+            <p class="lead">When the sync finishes, you can see the following state:</p>
+            <p class="code">cat /proc/mdstat</p>
+            <img id="raid_4" src="../img/full_raid_4.png" alt="" class="rounded portfolio-img portfolio-img-pointer">
+            <p class="lead">Now the array is ready, let’s make the file system for md0 and mount it to /mnt/md0</p>
+            <p class="code">mkfs.ext4 -F /dev/md0 <br> mkdir -p /mnt/md0 <br> mount /dev/md0 /mnt/md0</p>
+            <p class="lead">The array’s file system is ready and mounted, to see if it works and check the available free space, type the following command:</p>
+            <p class="code">df -h -x devtmpfs -x tmpfs</p>
+            <img id="raid_5" src="../img/full_raid_5.png" alt="" class="rounded portfolio-img portfolio-img-pointer">
+            <p class="lead">Save the array layout and set it auto-reassembled after reboots:</p>
+            <p class="code">mdadm –detail –scan | sudo tee -a /etc/mdadm/mdadm.conf <br> update-initramfs -u <br>  echo '/dev/md0 /mnt/md0 ext4 defaults,nofail,discard 0 0' | sudo tee -a /etc/fstab</p>
+            <br>
+            <h4>Next topic is changing one disk in the array. First, check the state:</h4>
+            <p class="code">mdadm –detail /dev/md0</p>
+            <img id="raid_6" src="../img/full_raid_6.png" alt="" class="rounded portfolio-img portfolio-img-pointer">
+            <p class="lead">sdb and sdc is active, to replace sdb, we need to set it to faulty and remove it from the array, then shut down the system.</p>
+            <p class="code">mdadm /dev/md0 –fail /dev/sdb <br> mdadm /dev/md0 –remove /dev/sdb <br> mdadm –detail /dev/md0 <br> shutdown now</p>
+            <img id="raid_7" src="../img/full_raid_7.png" alt="" class="rounded portfolio-img portfolio-img-pointer">
+            <p class="lead">After replacing the disk physically, make sure there is no partition on it, if it has, delete with fdisk as I mentioned above. If you’re not sure about the device name, you can use the lsblk command. Let’s add the new disk to the array:</p>
+            <p class="code">mdadm /dev/md0 –add /dev/sdb</p>
+            <p class="lead">Rebuild is started, it may take a long time, to check the process use one of the following commands:</p>
+            <p class="code">cat /proc/mdstat <br> mdadm –detail /dev/md0</p>
+            <img id="raid_8" src="../img/full_raid_8.png" alt="" class="rounded portfolio-img portfolio-img-pointer">
+            <br>
+            <h4>Our final topic is to delete the raid array from the system.</h4>
+            <p class="lead">First of all we need to unmount it, stop it, remove superblocks from disks.</p>
+            <p class="code">umount /mnt/md0 <br> mdadm –stop /dev/md0 <br> mdadm –zero-superblock /dev/sdb <br> mdadm –zero-superblock /dev/sdc</p>
+            <p class="lead">Then, comment or delete the following lines:</p>
+            <p class="code">nano /etc/fstab <br> # /dev/md0 /mnt/md0 ext4 defaults,nofail,discard 0 0</p>
+            <p class="code">nano /etc/mdadm/mdadm.conf <br> # ARRAY /dev/md0 …</p>
+            <p class="lead">Finally, updete initramfs:</p>
+            <p class="code">update-initramfs -u</p>
+            <br>
+            <h4>Thank you for reading this!</h4>            
+            <br>
+        </div>
+
+        <div id="myModal" class="modal">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="modal-img">
+            <div id="caption"></div>
+        </div>
+        <!--End Content-->
+        
+        <!--Start Footer-->
+        <footer id="footer" class="py-3 bg-dark">
+            <div class="container">
+                <p class="m-0 text-center text-white">Copyright &copy; Andras Dobozi 2020</p>
+            </div>
+        </footer>
+        <!--End Footer-->
+
+        <!-- Optional JavaScript -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+            crossorigin="anonymous"></script>
+        <script src="../script/modal_raid.js"></script>
+    </body>
+</html>
