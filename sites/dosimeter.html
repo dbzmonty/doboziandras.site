@@ -44,15 +44,38 @@
         <br>
         <div class="container">
             <h1 class="display-4">Dosimeter Display Module</h1>
-
-            <p class="lead">Few weeks ago, I bought a radiation detector board and after I connected it to an Arduino, the value of background radiation was displayed very well. To make more use of it and make it mobile, I decided to make a display module for it.</p>
-            
-            <img id="dosi_1" src="../img/thumb_dosi_1_600px.jpg" alt="Display Module" class="rounded portfolio-img portfolio-img-pointer">            
-            
-            
-            
-            
-            <p class="lead"><a href="https://github.com/dbzmonty/Nixie_Clock" target="_blank">Github Link</a></p>
+            <br>
+            <h4>Introduction:</h4>
+            <p class="lead">Few weeks ago, I bought a radiation detector board and after I connected it to an Arduino, the value of background radiation was displayed very well. To make more use of it and make it mobile, I decided to make a display module for it.</p>            
+            <img id="dosi_1" src="../img/thumb_dosi_1_600px.jpg" alt="Display Module" class="rounded portfolio-img portfolio-img-pointer">
+            <h4>Hardware:</h4>
+            <p class="lead">
+                <ul>
+                    <li>Geiger Counter Kit Module (link at the bottom of the page)</li>
+                    <li>Arduino Pro Mini (+ programmer)</li>
+                    <li>4x 7 segment LED display (common cathode)</li>
+                    <li>32x 220R SMD resistor</li>
+                    <li>4x 74HC595N shift register IC</li>
+                    <li>HX-3S-01 battery protection board</li>
+                    <li>3A DC-DC step-down converter</li>
+                    <li>Battery holder for 3 x 18650</li>
+                    <li>3x 18650 Li-Ion rechargable battery</li>
+                    <li>2x 100uF 16V capacitor</li>
+                    <li>Regular LED</li>
+                    <li>220R resistor</li>
+                </ul>
+            </p>
+            <img id="dosi_2" src="../img/thumb_dosi_2_600px.jpg" alt="Detector board" class="rounded portfolio-img portfolio-img-pointer">
+            <h4>Operation:</h4>
+            <p class="lead">The detector board sends signals to the Arduino every time when it detects gamma or soft beta rays. These signals can be recognised on an interrupt pin. There is a conversion factor (0.00812) which converts the count per minute value to uSV/h. The board displays this value. Bacause the microcontroller doesn’t have enought GPIO pins to drive all the segments of all displays I used shift registers. Using only 3 pins we can drive “unlimited” segments with daisy-chained shift registers. One pin for clock, one for data and one for latch. The program counting the detections in 10s cycles, converting it to uSV/h and displays the converted value. The battery pack can be charged by 12V – 19V, min. 1A power supply.</p>
+            <img id="dosi_3" src="../img/thumb_dosi_3_600px.jpg" alt="PCB" class="rounded portfolio-img portfolio-img-pointer">
+            <h4>Links:</h4>
+            <p class="lead">
+                <ul>
+                    <li><a href="https://github.com/dbzmonty/Dosimeter" target="_blank">Github Link</a></li>
+                    <li><a href="https://www.banggood.com/Assembled-DIY-Geiger-Counter-Kit-Module-Miller-Tube-GM-Tube-Nuclear-Radiation-Detector-p-1136883.html" target="_blank">Detector board</a></li>
+                </ul>
+            </p>
             <br>
         </div>
 
