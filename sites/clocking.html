@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Andras Dobozi's website</title>
+
+        <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../css/custom.css">
+    </head>
+    <body>
+        <!--Start Navigation-->
+        <nav id="header" class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="../index.html">Andras Dobozi</a>
+
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                    data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="portfolio.html">Portfolio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="cv.html">CV</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!--End Navigation-->
+
+        <!--Start Content-->
+        <br>
+        <div class="container">
+            <h1 class="display-4">NodeMCU based clocking system</h1>
+            <br>
+            <h4>Introduction:</h4>
+            <p class="lead">The main purpose of this system to count the working hours of the students / workers and count the sum of remaining working hours. Once the workers arrive, they touch the card to the RFID sensor, the system stores the time of arrival. After the shift they do it again and the departure time is also stored. On the website, every data is displayed.</p>
+            <h4>Hardware:</h4>
+            <p class="lead">This system is made by three main parts:</p>
+            <p class="lead">
+                <ul>
+                    <li>RC522 RFID module (card reader)</li>
+                    <li>0,96″ OLED (SSD1306) (display)</li>
+                    <li>ESP8266 NodeMCU WiFi Development Board (microcontroller)</li>
+                </ul>
+            </p>
+            <img id="clocking_1" src="../img/thumb_clocking_1_600px.jpg" alt="Hardware components" class="rounded portfolio-img portfolio-img-pointer">
+            <p class="portfolio-img-caption">Hardware components</p>
+            <h4>Operation:</h4>
+            <p class="lead">In this section I am going to describe the operation of this system. After the controller is powered on it enters the SETUP state to initialize and start services.</p>
+            <p class="lead">
+                <ul>
+                    <li>Serial.begin(115200); (serial monitor for debug purposes)</li>
+                    <li>mfrc522.PCD_Init(); (RFID card reader)</li>
+                    <li>display.begin(SSD1306_SWITCHCAPVCC, 0x3C); (OLED display)</li>
+                    <li>WiFi.begin(ssid, pass); (WiFi connection to reach MySQL database)</li>
+                </ul>
+            </p>
+            <p class="lead">If the SETUP state completed successfully the controller begins LOOP state and stays in it for good while the controller is powered on. It checks for cards in proximity constantly, if succeeded, the controller reads card ID and connects to MySQL database to look for a registered user who has a matching card ID. If exists, it retrieves user ID, first name, last name and the is_clocked_in flag.</p>
+            <p class="lead">
+                <ul>
+                    <li><b>In case of worker doesn’t clocked in: </b>An entry is created in database’s events table, storing user ID, clocked_in timestamp and event_ended flag with the value of 0. After these in users table the is_clocked_in flag changes to 1, so the worker is now clocked in, then user is welcomed on display.</li>
+                    <li><b>In case of worker already clocked in: </b>User is going to be clocked out, so the is_clocked_in flag is set to 0. After the user is clocked out, we need to close the event, so event_ended flag goes to 1. Events table’s clocked_out field is configured to store current timestamp on update, so when event_ended was updated to 1, current time for clocking out was stored.</li>
+                </ul>
+            </p>
+            <img id="clocking_2" src="../img/thumb_clocking_2_600px.jpg" alt="Users table" class="rounded portfolio-img portfolio-img-pointer">
+            <p class="portfolio-img-caption">Users table</p>
+            <img id="clocking_3" src="../img/thumb_clocking_3_600px.jpg" alt="Events table" class="rounded portfolio-img portfolio-img-pointer">
+            <p class="portfolio-img-caption">Events table</p>
+            <img id="clocking_4" src="../img/thumb_clocking_4_600px.jpg" alt="Testing" class="rounded portfolio-img portfolio-img-pointer">
+            <p class="portfolio-img-caption">Testing</p>
+            <p class="lead"><a href="https://github.com/dbzmonty/NodeMCU_based_clocking_system" target="_blank">Github Link</a></p>
+            <br>
+        </div>
+
+        <div id="myModal" class="modal">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="modal-img">
+            <div id="caption"></div>
+        </div>
+        <!--End Content-->
+        
+        <!--Start Footer-->
+        <footer id="footer" class="py-3 bg-dark">
+            <div class="container">
+                <p class="m-0 text-center text-white">Copyright &copy; Andras Dobozi 2020</p>
+            </div>
+        </footer>
+        <!--End Footer-->
+
+        <!-- Start Script -->
+        <script src="../script/jquery-3.5.1.slim.min.js"></script>
+        <script src="../script/popper.min.js"></script>
+        <script src="../script/bootstrap.min.js"></script>
+        <script src="../script/modal_clocking.js"></script>
+        <!-- End Script -->
+    </body>
+</html>

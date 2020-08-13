@@ -23,6 +23,18 @@ body {
     opacity: 0.7;
 }
 
+.portfolio-img-caption {
+    text-align: center;
+    font-weight:300;
+    position: relative;
+    top: -20px;
+}
+
+.portfolio-youtube {
+    text-align: center;
+    margin: 20px;
+}
+
 .modal {
     display: none;
     position: fixed;

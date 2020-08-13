@@ -43,18 +43,38 @@
         <!--Start Content-->
         <br>
         <div class="container">
-            <h1 class="display-4">Nixie clock</h1>
+            <h1 class="display-4">Dummy Smart Home</h1>
             <br>
-            <p class="lead">Once, when I was looking for something on the attic, I have found lots of nixie-tubes. After that I started to thinking about that what could I do with these. Soon, I figured out that I need just a 12V -> 150V high voltage power supply and a 74141PC driver IC which is a binary to decimal converter. After these stuffs arrived from ebay, I started to assemble a test PCB.</p>            
-            <img id="nixie_1" src="../img/thumb_nixie_1_600px.jpg" alt="Clock" class="rounded portfolio-img portfolio-img-pointer">
-            <p class="portfolio-img-caption">Clock</p>
-            <p class="lead">Since it works well, I started to develop the main PCB and the full code for an Atmel ATMega328P microcontroller (which is also used by Arduinos).</p>                        
-            <img id="nixie_2" src="../img/thumb_nixie_2_600px.jpg" alt="Under Construction" class="rounded portfolio-img portfolio-img-pointer">
-            <p class="portfolio-img-caption">Under Construction</p>
-            <p class="lead">To show the current and precise time, I am using a DS1307 RTC (real time clock) module. It is configured and actualized on PC at the first time, and a 3V Li-Ion battery keeps the clock ticking when the module is powered off.</p>            
-            <img id="nixie_3" src="../img/thumb_nixie_3_600px.jpg" alt="Early Experimentation" class="rounded portfolio-img portfolio-img-pointer">
-            <p class="portfolio-img-caption">Early Experimentation</p>
-            <p class="lead"><a href="https://github.com/dbzmonty/Nixie_Clock" target="_blank">Github Link</a></p>
+            <h4>Introduction:</h4>
+            <p class="lead">The focus of this project is to create a small smart home which consists of two main parts, a controller and a mobile application.</p>
+            <h4>Operation:</h4>
+            <img id="smarthome_1" src="../img/thumb_smarthome_1_600px.jpg" alt="Lights" class="rounded portfolio-img portfolio-img-pointer">
+            <p class="portfolio-img-caption">Lights</p>
+            <img id="smarthome_2" src="../img/thumb_smarthome_2_600px.jpg" alt="Thermostat" class="rounded portfolio-img portfolio-img-pointer">
+            <p class="portfolio-img-caption">Thermostat</p>
+            <img id="smarthome_3" src="../img/thumb_smarthome_3_600px.jpg" alt="Alarm" class="rounded portfolio-img portfolio-img-pointer">
+            <p class="portfolio-img-caption">Alarm</p>
+            <h4>Hardware:</h4>
+            <p class="lead">
+                <ul>
+                    <li>ATmega328P microcontroller</li>
+                    <li>1602 LCD module</li>
+                    <li>HC-05 bluetooth module</li>
+                    <li>HC-SR501 infrared motion sensor</li>
+                    <li>LM35 temperature sensor</li>
+                    <li>4 channel relay module</li>
+                    <li>Photoresistor</li>
+                </ul>
+            </p>
+            <img id="smarthome_4" src="../img/thumb_smarthome_4_600px.jpg" alt="Wiring diagram" class="rounded portfolio-img portfolio-img-pointer">
+            <p class="portfolio-img-caption">Wiring diagram</p>
+            <h4>Software:</h4>
+            <img id="smarthome_5" src="../img/thumb_smarthome_5_600px.jpg" alt="Mobile application" class="rounded portfolio-img portfolio-img-pointer">
+            <p class="portfolio-img-caption">Mobile application</p>
+            <P class="portfolio-youtube">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/xI-kFq5DBQM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </P>
+            <p class="portfolio-img-caption">Demonstration video</p>
             <br>
         </div>
 
@@ -77,7 +97,7 @@
         <script src="../script/jquery-3.5.1.slim.min.js"></script>
         <script src="../script/popper.min.js"></script>
         <script src="../script/bootstrap.min.js"></script>
-        <script src="../script/modal_nixie.js"></script>
+        <script src="../script/modal_smarthome.js"></script>
         <!-- End Script -->
     </body>
 </html>
