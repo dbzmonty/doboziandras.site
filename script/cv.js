@@ -15,19 +15,19 @@ let Qualifications = [
         Qualification: "English intermediate level B2 language exam",
         Institude: "Langwest",
         Location: "Eger, Hungary",
-        Date: "2015"
+        Date: "2014 - 2015"
     },
     {
         Qualification: "Graduation certificate",
         Institude: "Balassi Bálint Secondary School",
         Location: "Kal, Hungary",
-        Date: "2014"
+        Date: "2012 - 2014"
     },
     {
         Qualification: "Electrician certificate",
         Institude: "Wigner Jenő Secondary School",
         Location: "Eger, Hungary",
-        Date: "2003"
+        Date: "2002 - 2003"
     }
 ];
 
@@ -60,7 +60,7 @@ let WorkExperiences = [
         WorkExperience: "Computer Technician",
         Company: "Home Computer Store",
         Location: "Heves, Hungary",
-        Date: "2006 - 2009"
+        Date: "2006 - 2008"
     }    
 ];
 
