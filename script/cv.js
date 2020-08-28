@@ -64,6 +64,17 @@ let WorkExperiences = [
     }    
 ];
 
+let FinishedCourses = [
+    {
+        Course: "Angular 10 Course: Build Angular Apps",
+        Platform: "Udemy"
+    },
+    {
+        Course: "React JS Course: The Beginners Guide",
+        Platform: "Udemy"
+    }
+];
+
 let createTH = (html, parent) => {
     let th = document.createElement("th");
     th.innerHTML = html;
@@ -96,6 +107,16 @@ for (let key of Object.keys(WorkExperiences[0])) {
 }
 tableWorkExperiencesHead.appendChild(tr_w);
 
+/* Feltölteni a kurzusok fejlécét */
+let tableFinishedCoursesHead = document.querySelector("#tableFinishedCourses thead");
+let tr_c = document.createElement("tr");
+tr_c.className = "table-info";
+
+for (let key of Object.keys(FinishedCourses[0])) {
+    createTH(key, tr_c);
+}
+tableFinishedCoursesHead.appendChild(tr_c);
+
 /* Feltölteni a végzettségeket */
 let tableQualificationsBody = document.querySelector("#tableQualifications tbody");
 
@@ -120,4 +141,17 @@ for (let k in WorkExperiences) {
     }    
     
     tableWorkExperiencesBody.appendChild(tr);
+}
+
+/* Feltölteni a kurzusokat */
+let tableFinishedCoursesBody = document.querySelector("#tableFinishedCourses tbody");
+
+for (let k in FinishedCourses) {
+    let tr = document.createElement("tr");
+    
+    for (let value of Object.values(FinishedCourses[k])) {
+        createTD(value, tr);
+    }    
+    
+    tableFinishedCoursesBody.appendChild(tr);
 }
