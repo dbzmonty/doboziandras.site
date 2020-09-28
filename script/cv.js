@@ -72,6 +72,22 @@ let FinishedCourses = [
     {
         Course: "React JS Course: The Beginners Guide",
         Platform: "Udemy"
+    },
+    {
+        Course: "HTML, JavaScript, & Bootstrap - Certification Course",
+        Platform: "Udemy"
+    },
+    {
+        Course: "Network and Operating System Ethical Hacking Course",
+        Platform: "Udemy"
+    },
+    {
+        Course: "Scanning Cyber Security Hacking Course",
+        Platform: "Udemy"
+    },
+    {
+        Course: "Create a Members Only Blog using PHP, MySQL & AJAX",
+        Platform: "Udemy"
     }
 ];
 
