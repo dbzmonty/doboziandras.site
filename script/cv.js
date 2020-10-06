@@ -88,6 +88,10 @@ let FinishedCourses = [
     {
         Course: "Create a Members Only Blog using PHP, MySQL & AJAX",
         Platform: "Udemy"
+    },
+    {
+        Course: "PIC Microcontroller meets LabVIEW",
+        Platform: "Udemy"
     }
 ];
 
