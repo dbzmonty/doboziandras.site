@@ -47,14 +47,14 @@
             <br>
             <h4>In this article, I am going to show you how to configure a RAID 1 array on Ubuntu Linux.</h4>
             <p class="lead">I am using 2 pieces of 80GB hard drives, with a slightly different capacities. First of all let’s switch to superuser to prevent lots of sudos and list the devices and partitions.</p>
-            <p class="code">sudo su <br> lsblk</p>
+            <p class="code">sudo su <br> lsblk --fs</p>
             <img id="raid_1" src="../img/full_raid_1.png" alt="" class="rounded portfolio-img portfolio-img-pointer">
             <p class="lead">We are going to use sdb and sdc. Let’s make sure that disks don’t have any partitions, if there is one at least (sdb1) delete it with fdisk using ‘d’ command:</p>
             <p class="code">fdisk /dev/sdb</p>
             <p class="lead">Install mdadm:</p>
             <p class="code">apt install mdadm</p>
             <p class="lead">Create the RAID 1 array with sdb and sdc:</p>
-            <p class="code">mdadm –create –verbose /dev/md0 –level=1 –raid-devices=2 /dev/sdb /dev/sdc</p>
+            <p class="code">mdadm –-create -–verbose /dev/md0 –-level=1 –-raid-devices=2 /dev/sdb /dev/sdc</p>
             <img id="raid_2" src="../img/full_raid_2.png" alt="" class="rounded portfolio-img portfolio-img-pointer">
             <p class="lead">The array is created and syncing is started, check the syncing state:</p>
             <p class="code">cat /proc/mdstat</p>
@@ -68,23 +68,23 @@
             <p class="code">df -h -x devtmpfs -x tmpfs</p>
             <img id="raid_5" src="../img/full_raid_5.png" alt="" class="rounded portfolio-img portfolio-img-pointer">
             <p class="lead">Save the array layout and set it auto-reassembled after reboots:</p>
-            <p class="code">mdadm –detail –scan | sudo tee -a /etc/mdadm/mdadm.conf <br> update-initramfs -u <br>  echo '/dev/md0 /mnt/md0 ext4 defaults,nofail,discard 0 0' | sudo tee -a /etc/fstab</p>
+            <p class="code">mdadm -–detail -–scan | sudo tee -a /etc/mdadm/mdadm.conf <br> update-initramfs -u <br>  echo '/dev/md0 /mnt/md0 ext4 defaults,nofail,discard 0 0' | sudo tee -a /etc/fstab</p>
             <br>
             <h4>Next topic is changing one disk in the array. First, check the state:</h4>
-            <p class="code">mdadm –detail /dev/md0</p>
+            <p class="code">mdadm -–detail /dev/md0</p>
             <img id="raid_6" src="../img/full_raid_6.png" alt="" class="rounded portfolio-img portfolio-img-pointer">
             <p class="lead">sdb and sdc is active, to replace sdb, we need to set it to faulty and remove it from the array, then shut down the system.</p>
-            <p class="code">mdadm /dev/md0 –fail /dev/sdb <br> mdadm /dev/md0 –remove /dev/sdb <br> mdadm –detail /dev/md0 <br> shutdown now</p>
+            <p class="code">mdadm /dev/md0 -–fail /dev/sdb <br> mdadm /dev/md0 -–remove /dev/sdb <br> mdadm -–detail /dev/md0 <br> shutdown now</p>
             <img id="raid_7" src="../img/full_raid_7.png" alt="" class="rounded portfolio-img portfolio-img-pointer">
             <p class="lead">After replacing the disk physically, make sure there is no partition on it, if it has, delete with fdisk as I mentioned above. If you’re not sure about the device name, you can use the lsblk command. Let’s add the new disk to the array:</p>
-            <p class="code">mdadm /dev/md0 –add /dev/sdb</p>
+            <p class="code">mdadm /dev/md0 –-add /dev/sdb</p>
             <p class="lead">Rebuild is started, it may take a long time, to check the process use one of the following commands:</p>
-            <p class="code">cat /proc/mdstat <br> mdadm –detail /dev/md0</p>
+            <p class="code">cat /proc/mdstat <br> mdadm -–detail /dev/md0</p>
             <img id="raid_8" src="../img/full_raid_8.png" alt="" class="rounded portfolio-img portfolio-img-pointer">
             <br>
             <h4>Our final topic is to delete the raid array from the system.</h4>
             <p class="lead">First of all we need to unmount it, stop it, remove superblocks from disks.</p>
-            <p class="code">umount /mnt/md0 <br> mdadm –stop /dev/md0 <br> mdadm –zero-superblock /dev/sdb <br> mdadm –zero-superblock /dev/sdc</p>
+            <p class="code">umount /mnt/md0 <br> mdadm -–stop /dev/md0 <br> mdadm -–zero-superblock /dev/sdb <br> mdadm –-zero-superblock /dev/sdc</p>
             <p class="lead">Then, comment or delete the following lines:</p>
             <p class="code">nano /etc/fstab <br> # /dev/md0 /mnt/md0 ext4 defaults,nofail,discard 0 0</p>
             <p class="code">nano /etc/mdadm/mdadm.conf <br> # ARRAY /dev/md0 …</p>
