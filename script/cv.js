@@ -36,7 +36,7 @@ let WorkExperiences = [
         WorkExperience: ".NET Software Developer",
         Company: "Rosenberger Hungary Ltd.",
         Location: "Jaszarokszallas, Hungary",
-        Date: "2019 - Now"
+        Date: "2019 - 2021"
     },
     {
         WorkExperience: "Production Support intern",
