@@ -52,7 +52,7 @@ let WorkExperiences = [
     },
     {
         WorkExperience: "Maintenance Operative",
-        Company: "Grange St Paul’s Hotel",
+        Company: "Grange St Paul's Hotel",
         Location: "London, U.K.",
         Date: "2015 - 2016"
     },
@@ -65,6 +65,18 @@ let WorkExperiences = [
 ];
 
 let FinishedCourses = [
+    {
+        Course: "Learning Industrial Automation",
+        Platform: "LinkedIn Learning"
+    },
+    {
+        Course: "Learning PLC Ladder Logic",
+        Platform: "LinkedIn Learning"
+    },
+    {
+        Course: "Siemens TIA Portal - PLC Programming Basics",
+        Platform: "Udemy"
+    },
     {
         Course: "Angular 10 Course: Build Angular Apps",
         Platform: "Udemy"
