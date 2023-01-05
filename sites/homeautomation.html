@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Andras Dobozi's website</title>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="../css/custom.css">
+    </head>
+    <body>
+        <!--Start Navigation-->
+        <nav id="header" class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="../index.html">Andras Dobozi</a>
+
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                    data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="portfolio.html">Portfolio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="cv.html">CV</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!--End Navigation-->
+
+        <!--Start Content-->
+        <br>
+        <div class="container">
+            <h1 class="display-4">Home Automation</h1>
+            <br>
+            <h4>Introduction:</h4>
+            <p class="lead">This is a basic home automation system to switch lights on & off and check the doors' and windows' state from the Internet.</p>
+            <h4>Hardware:</h4>
+            <p class="lead">
+                <ul>
+                    <li>Arduino Mega 2560 Pro (for I/O)</li>
+                    <li>ESP8266 NodeMCU WiFi Development Board (for webserver)</li>
+                    <li>5V 16 Channel Relay Board Module</li>
+                </ul>
+            </p>
+            <img id="homeautomation_1" src="../img/thumb_homeautomation_1_600px.jpg" alt="Hardware components" class="rounded portfolio-img portfolio-img-pointer">
+            <p class="portfolio-img-caption">Hardware components</p>
+            <h4>Operation:</h4>
+            <p class="lead">With this system we can check the states and turn on and off the lights in the house. For example if I turned on the light in the living room with the pushbutton on the wall, the button on the website changes from OFF to ON without refreshing the webpage.
+                <br>We also can check the doors' and windows' state, red means open, green means closed.
+                <br>One more function is implemented already, if someone put somethin into the postbox we see that at the bottom of the website and email is sent to a specific address.
+            </p>
+            <img id="homeautomation_2" src="../img/thumb_homeautomation_2_600px.jpg" alt="Webpage" class="rounded portfolio-img portfolio-img-pointer">
+            <p class="portfolio-img-caption">Webpage</p>
+            <P class="portfolio-youtube">
+                <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/dVEpNQqJ5cg' frameborder='0' allowfullscreen></iframe></div>
+            </P>
+            <p class="portfolio-img-caption">Demonstration video</p>
+            <br>
+            <p class="lead"><a href="https://github.com/dbzmonty/Home-Automation" target="_blank">Github Link</a></p>
+            <br>
+        </div>
+
+        <div id="myModal" class="modal">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="modal-img">
+            <div id="caption"></div>
+        </div>
+        <!--End Content-->
+        
+        <!--Start Footer-->
+        <footer id="footer" class="py-3 bg-dark">
+            <div class="container">
+                <p class="m-0 text-center text-white">Copyright &copy; Andras Dobozi 2022</p>
+            </div>
+        </footer>
+        <!--End Footer-->
+
+        <!-- Start Script -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <script src="../script/modal_homeautomation.js"></script>
+        <!-- End Script -->
+    </body>
+</html>
